@@ -14,7 +14,8 @@ Create temporary files in the device cache using `env-paths-ts` to get the direc
 > [!NOTE]
 > `youcache` usa las mismas propiedades de `set`, `get` y `remove` de la libreria `youfile` -->
 
-> [!NOTE] > `youcache` uses the same properties of `set`, `get` and `remove` from the library `youfile`.
+> [!NOTE]
+> `youcache` uses the same properties of `set`, `get` and `remove` from the library `youfile`.
 
 ## Use
 
