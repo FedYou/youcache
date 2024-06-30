@@ -1,6 +1,6 @@
 {
   "name": "youcache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create temporary files in the device cache",
   "main": "index.js",
   "author": "FedYou",
@@ -29,10 +29,10 @@
     "@jumpcutking/console"
   ],
   "dependencies": {
-    "@jumpcutking/console": "^1.6.0",
+    "@jumpcutking/console": "^1.7.0",
     "env-paths-ts": "^1.0.1",
     "fs-extra": "^11.2.0",
     "uuid": "^9.0.1",
-    "youfile": "^1.0.0"
+    "youfile": "^1.0.5"
   }
 }

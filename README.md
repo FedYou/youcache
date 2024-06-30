@@ -1,84 +1,40 @@
 # YouCache
 
-<!-- Crea archivos temporales en el cache del dispositivo usando `env-paths-ts` para obtener los directorios en distintos sistemas operativos -->
+Creates temporary files at script execution time.
 
-Create temporary files in the device cache using `env-paths-ts` to get the directories on different operating systems
-
-<!-- > [!WARNING]
-> Si el entorno donde se ejecuta `youcache` es cerrado de repente sin previo aviso, el archivo temporal no se borrará -->
-
-> [!WARNING]
 > If the environment where `youcache` is running is suddenly shut down without warning, the temporary file will not be deleted.
 
-<!--
-> [!NOTE]
-> `youcache` usa las mismas propiedades de `set`, `get` y `remove` de la libreria `youfile` -->
-
-> [!NOTE]
-> `youcache` uses the same properties of `set`, `get` and `remove` from the library `youfile`.
-
-## Use
+## Installation
 
 ### Module
 
 ```js
-import { YCache } from "youcache";
+import Ycache from "youcache";
 ```
 
 ### Commonjs
 
 ```js
-const { YCache } = require("youcache");
+const Ycache = require("youcache");
 ```
 
-### Initialize
+### Uso
 
 ```js
-const mycache = new YCache("mycache-name");
+const mycache = new Ycache("mycache");
 ```
 
-## mycache.set
+Give your cache a name of your choice, you can use the same name as many times as you want.
 
-### Create File
+## Manipulation
 
-```js
-mycache.set(src, data);
-```
+youcahe` uses the same way of file manipulation as [youfile](https://github.com/FedYou/youfile). So see the documentation of [youfile](https://github.com/FedYou/youfile) to know how to manipulate the files.
 
-<!-- > [!TIP]
-> Si está trabando con `objetos` puedes poner directamente el `objeto` como dato del archivo `json` -->
-
-> [!TIP]
-> If you are working with `objects` you can put the `object` directly as data in the `json` file.
-
-### Create Folder
-
-<!-- Para crear una carpeta solo debes poner `false` en los datos -->
-
-To create a folder you just have to put `false` in the data
+It is not necessary to set the cache path when using the `youfile` functions as that is done automatically.
 
 ```js
-mycache.set(src, false);
-```
+let cache = new ycache("mycache");
 
-## mycache.get
-
-```js
-mycache.get(src);
-```
-
-<!-- > [!NOTE]
-> Al obtener los datos de un archivo con la extensión `.json` ya será un objeto -->
-
-> [!NOTE]
-> When obtaining data from a file with the extension `.json` it will already be an object
-
-## mycache.remove
-
-<!-- Elimina archivos y directorios -->
-
-Deletes files and directories
-
-```js
-yfile.remove(src);
+cache.write.dir(cache.path + "folder"); // This is the wrong way.
+cache.write.dir("folder"); // This is the correct form.
 ```
