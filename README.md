@@ -37,4 +37,6 @@ let cache = new ycache("mycache");
 
 cache.write.dir(cache.path + "folder"); // This is the wrong way.
 cache.write.dir("folder"); // This is the correct form.
+
+cache.read.dir.getAllFolders(); //It is necessary to write the name of a folder to read the cache directory.
 ```

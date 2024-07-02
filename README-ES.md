@@ -37,4 +37,6 @@ let cache = new ycache("mycache");
 
 cache.write.dir(cache.path + "folder"); // Esta es la forma incorecta.
 cache.write.dir("folder"); // Esta es la forma corecta.
+
+cache.read.dir.getAllFolders(); //Es nesesario escribir el nombre de una carpata para leer el directorio del cache.
 ```

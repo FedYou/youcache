@@ -33,6 +33,6 @@
     "env-paths-ts": "^1.0.1",
     "fs-extra": "^11.2.0",
     "uuid": "^9.0.1",
-    "youfile": "^1.0.5"
+    "youfile": "^1.0.6"
   }
 }

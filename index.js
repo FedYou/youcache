@@ -63,21 +63,43 @@ class YCache {
          * @param {string} path - Directory path.
          * @returns {Array<string>}
          */
-        getFolders: (path = "") => yfile.read.dir.getFolders(this.path + path),
+        getAllFolders: (path = "") =>
+          yfile.read.dir.getAllFolders(this.path + path),
         /**
          * Return all files in the directory.
          * @param {string} path - Directory path.
          * @returns {Array<string>}
          */
-        getFiles: (path = "") => yfile.read.dir.getFiles(this.path + path),
+        getAllFiles: (path = "") =>
+          yfile.read.dir.getAllFiles(this.path + path),
         /**
          * Returns all files in the directory with a specific extension.
          * @param {string} path - Directory path.
          * @param {string} extname - Extension to search.
          * @returns {Array<string>}
          */
-        getFilesExtname: (path = "", extname) =>
-          yfile.read.dir.getFilesExtname(this.path + path, extname),
+        getAllExtnameFiles: (path = "", extname) =>
+          yfile.read.dir.getAllExtnameFiles(this.path + path, extname),
+        /**
+         * Returns all folders that are in the same directory.
+         * @param {string} path - Directory path.
+         * @returns {Array<string>}
+         */
+        getFolders: (path = "") => yfile.read.dir.getFolders(this.path + path),
+        /**
+         * Returns all files that are in the same directory..
+         * @param {string} path - Directory path.
+         * @returns {Array<string>}
+         */
+        getFiles: (path = "") => yfile.read.dir.getFiles(this.path + path),
+        /**
+         * Return all files that are in the same directory with a specified extension.
+         * @param {string} path - Directory path.
+         * @param {string} extname - Extension to search.
+         * @returns {Array<string>}
+         */
+        getExtnameFiles: (path = "", extname) =>
+          yfile.read.dir.getExtnameFiles(this.path + path, extname),
       },
       /**
        * Returns the contents of the file as a string.
