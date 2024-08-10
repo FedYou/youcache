@@ -1,7 +1,7 @@
 {
   "name": "youcache",
   "version": "1.0.2",
-  "description": "Create temporary files in the device cache",
+  "description": "Creation of temporary files in the cache and on-device configuration",
   "main": "index.js",
   "author": "FedYou",
   "homepage": "https://github.com/FedYou/youcache",
@@ -33,6 +33,6 @@
     "env-paths-ts": "^1.0.1",
     "fs-extra": "^11.2.0",
     "uuid": "^9.0.1",
-    "youfile": "^1.0.6"
+    "youfile": "^1.0.8"
   }
 }

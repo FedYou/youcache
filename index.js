@@ -1,9 +1,9 @@
-const yfile = require("youfile");
+const youfile = require("youfile");
 const { v4: uuidv4 } = require("uuid");
 const envPaths = require("env-paths-ts");
 const jconsole = require("@jumpcutking/console");
 const toDir = require("./src/toDir");
-
+const { join } = require("path");
 function polish(path, name = "") {
   path = toDir(path);
   return [
@@ -16,135 +16,47 @@ function polish(path, name = "") {
     "/",
   ].join("");
 }
-
-class YCache {
+class Cache {
   /**
    * Cache name.
    * @param {string} name - Directory path.
    */
   constructor(name) {
     this.path = polish(envPaths.default().cache, name);
-    yfile.write.dir(this.path);
+    youfile.write.dir(this.path);
 
     //process exit
-    process.on("exit", () => yfile.remove(this.path));
+    process.on("exit", () => youfile.remove(this.path));
     jconsole.on("error", () => process.exit(0));
     process.on("SIGINT", () => process.exit(0));
   }
-
-  get write() {
-    return {
-      /**
-       * Create a directory.
-       * @param {string} path - Directory path.
-       */
-      dir: (path) => yfile.write.dir(this.path + path),
-      /**
-       * Create a file.
-       * @param {string} path - File path.
-       * @param {string} data - File contents.
-       */
-      file: (path, data) => yfile.write.file(this.path + path, data),
-      /**
-       * Create a file.
-       * @param {string} path - File path.
-       * @param {object} data - File contents.
-       * @param {number} spaces - Number of formatting spaces in the json file, default is 0.
-       */
-      json: (path, data, spaces = 0) =>
-        yfile.write.json(this.path + path, data, spaces),
-    };
-  }
-  get read() {
-    return {
-      dir: {
-        /**
-         * Return all folders in the directory.
-         * @param {string} path - Directory path.
-         * @returns {Array<string>}
-         */
-        getAllFolders: (path = "") =>
-          yfile.read.dir.getAllFolders(this.path + path),
-        /**
-         * Return all files in the directory.
-         * @param {string} path - Directory path.
-         * @returns {Array<string>}
-         */
-        getAllFiles: (path = "") =>
-          yfile.read.dir.getAllFiles(this.path + path),
-        /**
-         * Returns all files in the directory with a specific extension.
-         * @param {string} path - Directory path.
-         * @param {string} extname - Extension to search.
-         * @returns {Array<string>}
-         */
-        getAllExtnameFiles: (path = "", extname) =>
-          yfile.read.dir.getAllExtnameFiles(this.path + path, extname),
-        /**
-         * Returns all folders that are in the same directory.
-         * @param {string} path - Directory path.
-         * @returns {Array<string>}
-         */
-        getFolders: (path = "") => yfile.read.dir.getFolders(this.path + path),
-        /**
-         * Returns all files that are in the same directory..
-         * @param {string} path - Directory path.
-         * @returns {Array<string>}
-         */
-        getFiles: (path = "") => yfile.read.dir.getFiles(this.path + path),
-        /**
-         * Return all files that are in the same directory with a specified extension.
-         * @param {string} path - Directory path.
-         * @param {string} extname - Extension to search.
-         * @returns {Array<string>}
-         */
-        getExtnameFiles: (path = "", extname) =>
-          yfile.read.dir.getExtnameFiles(this.path + path, extname),
-      },
-      /**
-       * Returns the contents of the file as a string.
-       * @param {string} path - File path.
-       * @returns {string}
-       */
-      file: (path) => yfile.read.file(this.path + path),
-      /**
-       * Returns the contents of the file as a object.
-       * @param {string} path - File path.
-       * @returns {object}
-       */
-      json: (path) => yfile.read.json(this.path + path),
-      /**
-       * Returns the contents of the file in an object, uses json5 which allows reading json with comments.
-       * @param {string} path - File path.
-       * @returns {object}
-       */
-      json5: (path) => yfile.read.json5(this.path + path),
-    };
-  }
   /**
-   * Copy files and directories.
-   * @param {string} path - Directory or file path.
-   * @param {string} dest - Destination path of the directory or file.
+   * Clean the cache.
    */
-  copy(path, dest) {
-    yfile.copy(this.path + path, dest);
-  }
-  /**
-   * Move files and directories.
-   * @param {string} path - Directory or file path.
-   * @param {string} dest - Destination path of the directory or file.
-   */
-  move(path, dest) {
-    yfile.copy(this.path + path, dest);
-  }
-
-  /**
-   * Deletes files and directories.
-   * @param {string} path - Directory or file path.
-   */
-  remove(path) {
-    yfile.remove(this.path + path);
+  clear() {
+    youfile.remove(this.path);
+    youfile.write.dir(this.path);
   }
 }
-
-module.exports = YCache;
+class Config {
+  /**
+   * Configuration name.
+   * @param {string} name - Directory path.
+   */
+  constructor(name) {
+    if (!name) {
+      console.error("You must name the configuration.");
+      process.exit(0);
+    }
+    this.path = join(toDir(envPaths.default().config), name);
+    youfile.write.dir(this.path);
+  }
+  /**
+   * Clean the confuguration.
+   */
+  clear() {
+    youfile.remove(this.path);
+    youfile.write.dir(this.path);
+  }
+}
+module.exports = { Cache, Config };
