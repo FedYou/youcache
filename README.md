@@ -1,42 +1,40 @@
 # YouCache
 
-Creates temporary files at script execution time.
+Creates temporary files at script execution time and configuration time
 
-> If the environment where `youcache` is running is suddenly shut down without warning, the temporary file will not be deleted.
+> If the environment where `new Cache(<name>)` is executed is suddenly closed without warning, the temporary file will not be deleted.
 
-## Installation
+> The configuration will not be deleted at the end of the run and can be read again.
+
+## Instalation
 
 ### Module
 
 ```js
-import Ycache from "youcache";
+import { Config, Cache } from "youcache";
 ```
 
 ### Commonjs
 
 ```js
-const Ycache = require("youcache");
+const { Config, Cache } = require("youcache");
 ```
 
-### Uso
+### Use
 
 ```js
-const mycache = new Ycache("mycache");
+const mycache = new Cache("<name>"); // The name is not mandatory
+const myconfig = new Config("<name>"); // The name is required
 ```
 
-Give your cache a name of your choice, you can use the same name as many times as you want.
-
-## Manipulation
-
-youcahe` uses the same way of file manipulation as [youfile](https://github.com/FedYou/youfile). So see the documentation of [youfile](https://github.com/FedYou/youfile) to know how to manipulate the files.
-
-It is not necessary to set the cache path when using the `youfile` functions as that is done automatically.
-
 ```js
-let cache = new ycache("mycache");
+const cache = new Cache("<name>");
+const config = new Config("<name>");
 
-cache.write.dir(cache.path + "folder"); // This is the wrong way.
-cache.write.dir("folder"); // This is the correct form.
-
-cache.read.dir.getAllFolders(); //It is necessary to write the name of a folder to read the cache directory.
+// Folder path
+console.log(cache.path);
+console.log(config.path);
+// Cleans the contents of the folder
+cache.clear();
+config.clear();
 ```
