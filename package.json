@@ -1,6 +1,6 @@
 {
   "name": "youcache",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Creation of temporary files in the cache and on-device configuration",
   "main": "index.js",
   "author": "FedYou",
