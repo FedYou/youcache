@@ -34,6 +34,9 @@ module.exports = class YouCache {
       return null;
     }
   }
+  delete() {
+    youfile.removeExists(this.path);
+  }
   clear() {
     youfile.removeExists(this.path);
     youfile.write.dir(this.path);

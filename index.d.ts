@@ -27,6 +27,10 @@ declare class YouCache {
    **/
   get(filePath: string): Promise<string | null>;
   /**
+   * Removes the cache
+   **/
+  delete(): void;
+  /**
    * Clears the cache
    **/
   clear(): void;
