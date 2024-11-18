@@ -7,12 +7,7 @@
   "homepage": "https://github.com/FedYou/youcache",
   "license": "MIT",
   "keywords": [
-    "javascript",
     "node",
-    "fs-extra",
-    "json5",
-    "mkdir",
-    "file",
     "dir",
     "folder",
     "manage",
@@ -22,17 +17,9 @@
     "cache",
     "temporary",
     "device",
-    "create",
-    "env-paths",
-    "env-paths-ts",
-    "uuid",
-    "@jumpcutking/console"
+    "create"
   ],
   "dependencies": {
-    "@jumpcutking/console": "^1.7.0",
-    "env-paths-ts": "^1.0.1",
-    "fs-extra": "^11.2.0",
-    "uuid": "^9.0.1",
-    "youfile": "^1.0.8"
+    "youfile": "^1.0.9"
   }
 }
