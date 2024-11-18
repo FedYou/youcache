@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Creation of temporary files in the cache and on-device configuration",
   "main": "index.js",
+  "types": "index.d.ts",
   "author": "FedYou",
   "homepage": "https://github.com/FedYou/youcache",
   "license": "MIT",
