@@ -25,7 +25,7 @@ module.exports = class YouCache {
     const pathCache = path.join(this.path, hash);
     youfile.removeExists(pathCache);
   }
-  async get(filePath) {
+  async getForPath(filePath) {
     const hash = await youfile.get.sha256(filePath);
     const pathCache = path.join(this.path, hash);
     if (youfile.exists(pathCache)) {
@@ -33,6 +33,18 @@ module.exports = class YouCache {
     } else {
       return null;
     }
+  }
+  getForHash(hash) {
+    const pathCache = path.join(this.path, hash);
+    if (youfile.exists(pathCache)) {
+      return pathCache;
+    } else {
+      return null;
+    }
+  }
+  async getHash(filePath) {
+    const hash = await youfile.get.sha256(filePath);
+    return hash;
   }
   delete() {
     youfile.removeExists(this.path);

@@ -12,7 +12,6 @@ declare class YouCache {
   /**
    * Create a path for the file to be cached
    * @param {string} filePath - Path of the file to add
-   * @returns {string} - Path of the file
    **/
   addForPath(filePath: string): Promise<string>;
   /**
@@ -21,11 +20,20 @@ declare class YouCache {
    **/
   remove(filePath: string): Promise<void>;
   /**
-   * Gets a file from the cache
+   * Gets the path of the cache file
    * @param {string} filePath - Path of the file to get
-   * @returns {string | null} - Path of the file or null if not found
    **/
-  get(filePath: string): Promise<string | null>;
+  getForPath(filePath: string): Promise<string | null>;
+  /**
+   * Gets the path of the cache file with hash of the file
+   * @param {string} hash - Path of the file to get
+   **/
+  getForHash(hash: string): string | null;
+  /**
+   * Gets the hash of file
+   * @param {string} filePath - Path of the file to get
+   **/
+  getHash(filePath: string): Promise<string>;
   /**
    * Removes the cache
    **/
