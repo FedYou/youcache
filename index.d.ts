@@ -5,38 +5,52 @@ declare class YouCache {
    **/
   constructor(name: string);
   /**
-   * Adds a file to the cache
+   * create a file in the cache
    * @param {string} filePath - Path of the file to add
+   * @param {string} content - Content of the file to add
+   * @returns {Promise<string>} - Path of the file in the cache
    **/
-  add(filePath: string, content: string): Promise<void>;
+  create(filePath: string, content: string): Promise<string>;
+  /**
+   * Create a path for the file to be cached
+   * @param {string} filePath - Path of the file to add
+   * @returns {Promise<string>} - Path of the file in the cache
+   **/
+  createPath(filePath: string): Promise<string>;
+  /**
+   * Create a hash for the file to be cached
+   * @param {string} filePath - Path of the file to add
+   * @returns {Promise<string>} - Hash of the file
+   **/
+  /**
+   * Create a hash for the file to be cached
+   * @param {string} filePath - Path of the file to add
+   * @returns {Promise<string>} - Hash of the file
+   **/
+  createHash(filePath: string): Promise<string>;
+  /**
+   * Add a file to the cache
+   * @param {string} filePath - Path of the file to add
+   * @returns {Promise<string>} - Path of the file in the cache
+   **/
+  add(filePath: string): Promise<string>;
   /**
    * Create a path for the file to be cached
    * @param {string} filePath - Path of the file to add
    **/
-  addForPath(filePath: string): Promise<string>;
+  getForHash(hash: string): string;
   /**
-   * Removes a file from the cache
+   * Get a file from the cache
+   * @param {string} filePath - Path of the file to get
+   * @returns {Promise<string>} - Path of the file in the cache
+   **/
+  get(filePath: string): Promise<string>;
+  /**
+   * Remove a file from the cache
    * @param {string} filePath - Path of the file to remove
    **/
   remove(filePath: string): Promise<void>;
-  /**
-   * Gets the path of the cache file
-   * @param {string} filePath - Path of the file to get
-   **/
-  getForPath(filePath: string): Promise<string | null>;
-  /**
-   * Gets the path of the cache file with hash of the file
-   * @param {string} hash - Path of the file to get
-   **/
-  getForHash(hash: string): string | null;
-  /**
-   * Gets the hash of file
-   * @param {string} filePath - Path of the file to get
-   **/
-  getHash(filePath: string): Promise<string>;
-  /**
-   * Removes the cache
-   **/
+
   delete(): void;
   /**
    * Clears the cache

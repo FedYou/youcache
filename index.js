@@ -9,22 +9,28 @@ module.exports = class YouCache {
     this.path = cachePath(`${name}.node.cache`);
     youfile.write.dir(this.path);
   }
-  async add(filePath, content) {
+  async add(filePath) {
+    const hash = await youfile.get.sha256(filePath);
+    const pathCache = path.join(this.path, hash);
+    youfile.copy(filePath, pathCache);
+    return pathCache;
+  }
+  async create(filePath, content) {
     const hash = await youfile.get.sha256(filePath);
     const pathCache = path.join(this.path, hash);
     youfile.write.file(pathCache, content);
+    return pathCache;
   }
-  async addForPath(filePath) {
+  async createPath(filePath) {
     const hash = await youfile.get.sha256(filePath);
     const pathCache = path.join(this.path, hash);
     return pathCache;
   }
-  async remove(filePath) {
+  async createHash(filePath) {
     const hash = await youfile.get.sha256(filePath);
-    const pathCache = path.join(this.path, hash);
-    youfile.removeExists(pathCache);
+    return hash;
   }
-  async getForPath(filePath) {
+  async get(filePath) {
     const hash = await youfile.get.sha256(filePath);
     const pathCache = path.join(this.path, hash);
     if (youfile.exists(pathCache)) {
@@ -41,9 +47,10 @@ module.exports = class YouCache {
       return null;
     }
   }
-  async getHash(filePath) {
+  async remove(filePath) {
     const hash = await youfile.get.sha256(filePath);
-    return hash;
+    const pathCache = path.join(this.path, hash);
+    youfile.removeExists(pathCache);
   }
   delete() {
     youfile.removeExists(this.path);
