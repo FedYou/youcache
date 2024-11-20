@@ -6,8 +6,7 @@ module.exports = class YouCache {
   constructor(name) {
     if (typeof name !== "string")
       throw new Error("YouCache: name must be a string");
-
-    this.path = cachePath(name);
+    this.path = cachePath(`${name}.node.cache`);
     youfile.write.dir(this.path);
   }
   async add(filePath, content) {
