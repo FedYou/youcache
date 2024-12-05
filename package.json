@@ -21,6 +21,6 @@
     "create"
   ],
   "dependencies": {
-    "youfile": "^1.0.9"
+    "youfile": "1.0.10"
   }
 }
