@@ -1,7 +1,7 @@
 {
   "name": "youcache",
   "version": "1.0.3",
-  "description": "Creation of temporary files in the cache and on-device configuration",
+  "description": "Easily create a cache interface to your file system",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "FedYou",
