@@ -1,62 +1,43 @@
+interface Return {
+  path: string
+  hash: string
+}
+
 declare class YouCache {
   /**
    * Creates a new YouCache instance
    * @param {string} name - Name of the cache
    **/
-  constructor(name: string);
+  constructor(name: string)
   /**
-   * create a file in the cache
-   * @param {string} filePath - Path of the file to add
-   * @param {string} content - Content of the file to add
-   * @returns {Promise<string>} - Path of the file in the cache
-   **/
-  create(filePath: string, content: string): Promise<string>;
+   * Path of cache in on-device
+   */
+  path: string
   /**
-   * Create a path for the file to be cached
-   * @param {string} filePath - Path of the file to add
-   * @returns {Promise<string>} - Path of the file in the cache
-   **/
-  createPath(filePath: string): Promise<string>;
+   * Add a new file in the cache
+   * @param {string} path - Path of the file to add
+   * @param {any} content - Content of the file to add
+   * @returns - Path of the file added and file hash
+   */
+  add(path: string, content: any): Promise<Return>
   /**
-   * Create a hash for the file to be cached
-   * @param {string} filePath - Path of the file to add
-   * @returns {Promise<string>} - Hash of the file
-   **/
+   * Get the path of a file in the cache
+   * @param {string} path - Path of the file to get
+   * @returns - Path of the file in the cache and file hash
+   */
+  get(path: string): Promise<Return> | null
   /**
-   * Create a hash for the file to be cached
-   * @param {string} filePath - Path of the file to add
-   * @returns {Promise<string>} - Hash of the file
-   **/
-  createHash(filePath: string): Promise<string>;
-  /**
-   * Add a file to the cache
-   * @param {string} filePath - Path of the file to add
-   * @returns {Promise<string>} - Path of the file in the cache
-   **/
-  add(filePath: string): Promise<string>;
-  /**
-   * Create a path for the file to be cached
-   * @param {string} filePath - Path of the file to add
-   **/
-  getForHash(hash: string): string;
-  /**
-   * Get a file from the cache
-   * @param {string} filePath - Path of the file to get
-   * @returns {Promise<string>} - Path of the file in the cache
-   **/
-  get(filePath: string): Promise<string>;
+   * Create a new file path, does not add file to cache
+   * @param path - Path of the file to get
+   * @returns - Path of the file in the cache and file hash
+   */
+  create(path: string): Promise<Return>
   /**
    * Remove a file from the cache
-   * @param {string} filePath - Path of the file to remove
-   **/
-  remove(filePath: string): Promise<void>;
-
-  delete(): void;
-  /**
-   * Clears the cache
-   **/
-  clear(): void;
+   * @param {string} path - Path of the file to remove
+   */
+  remove(path: string): Promise<void>
 }
 
-export = YouCache;
-export as namespace YouCache;
+export = YouCache
+export as namespace YouCache
