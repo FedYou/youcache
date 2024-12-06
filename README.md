@@ -9,7 +9,7 @@ Creates a cache interface to your file system in an easy way.
 ### Module
 
 ```js
-import YouCache from ``youcache`;
+import YouCache from 'youcache'
 ```
 
 ### Commonjs
