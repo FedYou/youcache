@@ -1,6 +1,6 @@
 {
   "name": "youcache",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Easily create a cache path for your file system",
   "main": "index.js",
   "types": "index.d.ts",
