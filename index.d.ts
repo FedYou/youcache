@@ -1,12 +1,7 @@
-interface Return {
-  path: string
-  hash: string
-}
-
 declare class YouCache {
   /**
    * Creates a new YouCache instance
-   * @param {string} name - Name of the cache
+   * @param name - Name of the cache
    **/
   constructor(name: string)
   /**
@@ -14,29 +9,13 @@ declare class YouCache {
    */
   path: string
   /**
-   * Add a new file in the cache
-   * @param {string} path - Path of the file to add
-   * @param {any} content - Content of the file to add
-   * @returns - Path of the file added and file hash
+   * Clears the cache asynchronously
    */
-  add(path: string, content: any): Promise<Return>
+  clear(): Promise<void>
   /**
-   * Get the path of a file in the cache
-   * @param {string} path - Path of the file to get
-   * @returns - Path of the file in the cache and file hash
+   * Clears the cache synchronously
    */
-  get(path: string): Promise<Return> | null
-  /**
-   * Create a new file path, does not add file to cache
-   * @param path - Path of the file to get
-   * @returns - Path of the file in the cache and file hash
-   */
-  create(path: string): Promise<Return>
-  /**
-   * Remove a file from the cache
-   * @param {string} path - Path of the file to remove
-   */
-  remove(path: string): Promise<void>
+  clearSync(): void
 }
 
 export = YouCache
